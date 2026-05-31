@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stan Le Roy – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --white: #ffffff;
+      --border: #e5e5e5;
+      --accent: #1a56db;
+      --text: #111827;
+      --muted: #6b7280;
+      --light: #f3f4f6;
+      --tag-bg: #eff6ff;
+      --tag-color: #1d4ed8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero-wrapper {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.75rem 1.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: #1648c0;
+      transform: translateY(-1px);
+    }
+
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--light);
+      border: 3px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* MAIN */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    /* ABOUT */
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* SKILLS */
+    .skills-group { margin-bottom: 2rem; }
+
+    .skills-group-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-color);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+      padding-top: 2px;
+    }
+
+    .exp-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .exp-desc ul {
+      padding-left: 1.1rem;
+    }
+
+    .exp-desc ul li {
+      margin-bottom: 0.2rem;
+    }
+
+    /* EDUCATION */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .edu-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+      padding-top: 2px;
+    }
+
+    .edu-degree {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* BADGES */
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .badge-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .badge-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .badge-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .badge-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; }
+    .badge-sub { font-size: 0.78rem; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2.5rem;
+      max-width: 500px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-link {
+      color: var(--accent);
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .contact-link:hover { text-decoration: underline; }
+
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 4rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      nav, footer { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+      .hero-photo { width: 120px; height: 120px; }
+      .container { padding: 0 1.5rem; }
+      .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Stan Le Roy</span>
+  <ul class="nav-links">
+    <li><a href="#about">Over mij</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Ervaring</a></li>
+    <li><a href="#education">Opleiding</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero-wrapper">
+  <div class="hero">
+    <div>
+      <div class="hero-tag">Mainframe Developer</div>
+      <h1>Stan Le Roy</h1>
+      <p class="hero-sub">
+        Gemotiveerde IT-student aan HoGent met een afstudeerrichting in mainframe. Praktisch ingesteld, leergierig en ervaring met zowel teamwork als klantencontact.
+      </p>
+      <a href="#contact" class="btn">Neem contact op</a>
+    </div>
+    <div class="hero-photo">
+      <!-- Vervang door: <img src="jouwfoto.jpg" alt="Stan Le Roy"> -->
+      <span>foto</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">Over mij</h2>
+    <div class="about-text">
+      <p>Ik ben Stan Le Roy, een IT-student aan HoGent met een focus op mainframe development. Ik combineer analytisch denken met een hands-on aanpak en werk graag in een teamgerichte omgeving.</p>
+      <p>Ik ben op zoek naar een functie binnen mainframe-omgevingen waarin ik mijn technische vaardigheden verder kan ontwikkelen. Naast mijn studies ben ik ook actief als scoutsleider, waar ik mijn leiderschaps- en teamworkvaardigheden verder ontwikkel.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-group">
+      <div class="skills-group-title">Programmeertalen</div>
+      <div class="tags">
+        <span class="tag">COBOL</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML / CSS</span>
+        <span class="tag">JavaFX</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-title">Mainframe & Tools</div>
+      <div class="tags">
+        <span class="tag">z/OS</span>
+        <span class="tag">JCL</span>
+        <span class="tag">ISPF</span>
+        <span class="tag">Changeman</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-title">Data & Tools</div>
+      <div class="tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Excel</span>
+        <span class="tag">Jira</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2 class="section-title">Werkervaring</h2>
+
+    <div class="exp-item">
+      <div class="exp-date">Feb 2026 – heden</div>
+      <div>
+        <div class="exp-title">Bachelorproef</div>
+        <div class="exp-company">Teledyne FLIR</div>
+        <div class="exp-desc">
+          <ul><li>Uitwerken van een praktijkgericht IT-project binnen een CI-CD omgeving</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Feb 2026 – heden</div>
+      <div>
+        <div class="exp-title">Stage – Developer</div>
+        <div class="exp-company">KBC</div>
+        <div class="exp-desc">
+          <ul><li>Ontwikkeling van 2 3270-schermen voor de dienst Payments binnen een Mainframe/COBOL omgeving</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Nov – Dec 2025</div>
+      <div>
+        <div class="exp-title">Stage – Work Based Learning</div>
+        <div class="exp-company">KBC</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Kennismaking met bedrijfsprocessen en IT-omgeving</li>
+            <li>Eerste ervaring binnen een professionele IT-context</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jun 2025 – heden</div>
+      <div>
+        <div class="exp-title">Medewerker</div>
+        <div class="exp-company">McBride</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Werken in een productieomgeving met focus op efficiëntie en nauwkeurigheid</li>
+            <li>Samenwerken in teamverband</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Zomer 2020 – heden</div>
+      <div>
+        <div class="exp-title">IT & Tech Support</div>
+        <div class="exp-company">Teledyne FLIR</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Ondersteuning bij technische problemen</li>
+            <li>IT-support en troubleshooting</li>
+            <li>Samenwerken met engineers en IT-professionals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2 class="section-title">Opleiding</h2>
+
+    <div class="edu-item">
+      <div class="edu-date">2021 – heden</div>
+      <div>
+        <div class="edu-degree">Bachelor Toegepaste Informatica</div>
+        <div class="edu-school">Hogeschool Gent</div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-date">2017 – 2021</div>
+      <div>
+        <div class="edu-degree">Middelbaar Onderwijs – Informaticabeheer</div>
+        <div class="edu-school">Heilige Familie Ieper</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGES -->
+  <section>
+    <h2 class="section-title">Certificaten</h2>
+    <div class="badge-grid">
+      <a class="badge-card" href="https://www.credly.com/badges/4b823474-1a54-4400-9513-b543126e33f8/public_url" target="_blank">
+        <div class="badge-icon">🏅</div>
+        <div>
+          <div class="badge-title">z/OS System Services Structure</div>
+          <div class="badge-sub">IBM SkillsBuild</div>
+        </div>
+      </a>
+      <div class="badge-card">
+        <div class="badge-icon">🔐</div>
+        <div>
+          <div class="badge-title">Ethical Hacker</div>
+          <div class="badge-sub">Cisco — bezig...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-box">
+      <p>Geïnteresseerd in samenwerken of meer info? Stuur me gerust een mail.</p>
+      <a href="mailto:stan.leroy@student.hogent.be" class="contact-link">stan.leroy@student.hogent.be</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 Stan Le Roy
+</footer>
+
+</body>
+</html>
